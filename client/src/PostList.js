@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { render } from '@testing-library/react';
+import CommentCreate from './CommentCreate';
+import CommentList from './CommentList';
 
 export default () => {
     const [posts, setPosts] = useState({});
@@ -24,12 +25,14 @@ export default () => {
             >
                 <div className="card-body">
                     <h3>{post.title}</h3>
+                    <CommentList postId={post.id} />
+                    <CommentCreate postId={post.id} />
                 </div>
             </div>
         );
     })
 
-    return <di className="d-flex flex-row flex-wrap justify-content-between">
+    return <div className="d-flex flex-row flex-wrap justify-content-between">
         {renderedPosts}
-    </di>;
+    </div>;
 };
